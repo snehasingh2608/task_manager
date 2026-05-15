@@ -21,7 +21,7 @@ async function main() {
     data: {
       email: 'admin@demo.com',
       password,
-      name: 'Ethara Admin',
+      name: 'System Admin',
       role: 'ADMIN',
     },
   });
@@ -46,7 +46,7 @@ async function main() {
 
   const project = await prisma.project.create({
     data: {
-      name: 'Enterprise AI Overhaul',
+      name: 'Enterprise Platform Overhaul',
       description: 'Main project for Phase 2 workforce transition.',
       ownerId: admin.id,
       members: {

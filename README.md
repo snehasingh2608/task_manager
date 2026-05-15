@@ -1,4 +1,4 @@
-# 🚀 Team Task Manager (Anti-Gravity Edition)
+# 🚀 Team Task Manager
 
 Welcome to the **Team Task Manager**! This is a high-performance, modern project and task management platform designed to help teams collaborate with zero friction. Whether you're an Admin looking for the big picture or a Tasker focused on the day's to-do list, this tool has you covered.
 
