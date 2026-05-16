@@ -11,7 +11,18 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://task-manager-frontend-production-ed16.up.railway.app",
+    "http://localhost:3000"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+}));
+
+app.options("*", cors());
+
 app.use(express.json());
 
 app.use('/auth', authRoutes);
@@ -20,8 +31,12 @@ app.use('/tasks', taskRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use('/attendance', attendanceRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Task Manager Backend Running");
+});
+
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+app.listen(Number(PORT), '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });

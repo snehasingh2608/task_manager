@@ -84,7 +84,7 @@ router.get('/:id', async (req: AuthRequest, res: Response): Promise<void> => {
     }
 
     // Check if user is member
-    const isMember = project.members.some((m) => m.userId === userId);
+    const isMember = project.members.some((m: any) => m.userId === userId);
     if (!isMember) {
       res.status(403).json({ error: 'Forbidden' });
       return;

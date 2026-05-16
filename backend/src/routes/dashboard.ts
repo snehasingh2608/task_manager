@@ -33,7 +33,7 @@ router.get('/stats', async (req: AuthRequest, res: Response): Promise<void> => {
       where: { userId },
       select: { projectId: true },
     });
-    const projectIds = memberships.map((m) => m.projectId);
+    const projectIds = memberships.map((m: any) => m.projectId);
 
     // Tasks in these projects
     const tasks = await prisma.task.findMany({
@@ -41,15 +41,15 @@ router.get('/stats', async (req: AuthRequest, res: Response): Promise<void> => {
     });
 
     const totalTasks = tasks.length;
-    const completedTasks = tasks.filter((t) => t.status === 'DONE').length;
-    const assignedToMe = tasks.filter((t) => t.assigneeId === userId);
+    const completedTasks = tasks.filter((t: any) => t.status === 'DONE').length;
+    const assignedToMe = tasks.filter((t: any) => t.assigneeId === userId);
     
     const now = new Date();
     const overdueTasks = tasks.filter(
-      (t) => t.dueDate && new Date(t.dueDate) < now && t.status !== 'DONE'
+      (t: any) => t.dueDate && new Date(t.dueDate) < now && t.status !== 'DONE'
     ).length;
 
-    const tasksDueToday = tasks.filter((t) => {
+    const tasksDueToday = tasks.filter((t: any) => {
       if (!t.dueDate) return false;
       const due = new Date(t.dueDate);
       return (
